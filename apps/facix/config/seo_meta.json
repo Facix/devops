@@ -1,0 +1,25 @@
+{
+  "title": "Facix",
+  "titleTemplate": "%s - Facix",
+  "description": "Facix",
+  "openGraph": {
+    "title": "Facix",
+    "description": "Facix",
+    "type": "website",
+    "site_name": "Facix",
+    "url": "",
+    "images": [
+      {
+        "url": "",
+        "width": "1200",
+        "height": "630",
+        "alt": "Facix"
+      }
+    ]
+  },
+  "twitter": {
+    "handle": "@Facix",
+    "site": "@Facix",
+    "cardType": "summary_large_image"
+  }
+}
