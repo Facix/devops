@@ -1,0 +1,69 @@
+name: CI / Facix
+
+on: [push, pull_request]
+
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  discussions: write
+  issues: write
+  packages: write
+  pages: write
+
+jobs:
+  quality:
+    name: Quality
+    runs-on: ubuntu-22.04
+    if: ${{ always() }}
+    timeout-minutes: 1
+    concurrency:
+      group: ${{ github.workflow }}-qa-${{ github.ref }}
+      cancel-in-progress: true
+    needs:
+      - qa-typescript
+    steps:
+      - run: echo "::group::Quality checks"
+
+  qa-typescript:
+    name: Quality
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    concurrency:
+      group: ${{ github.workflow }}-qa-ts-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          node-version: 16
+
+      - name: Install node dependencies
+        run: yarn install
+
+      - name: Check coding standards
+        run: yarn run format:check
+
+      - name: Make static analysis (eslint)
+        run: yarn run lint:check
+
+      - name: Make static analysis (typescript)
+        run: yarn run typescript:check
+
+  test-others:
+    name: Test Others
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    concurrency:
+      group: ${{ github.workflow }}-test-others-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          node-version: 16
+
+      - name: Install node dependencies
+        run: yarn install
+
+      - name: Run tests
+        run: yarn run test

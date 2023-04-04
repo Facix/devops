@@ -1,0 +1,19 @@
+area/facix:
+  - src/**/*
+
+kind/documentation:
+  - documentation/**/*
+
+area/workflow:
+  - .github/workflows/**/*
+
+kind/dependencies:
+  - "**/*/.yarn/**/*"
+  - "**/*/.yarnrc.yml"
+  - "**/*/yarn.lock"
+
+kind/tests:
+  - "**/*/*.spec.*"
+
+kind/storybook:
+  - "**/*/*.stories.*"
