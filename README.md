@@ -22,7 +22,7 @@ Go on http://localhost:3000/
 ### Jest
 
 ```shell
-yarn test
+$ yarn test
 ```
 
 ### StoryBook
