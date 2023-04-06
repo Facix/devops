@@ -48,8 +48,5 @@
   },
   "msw": {
     "workerDirectory": ".storybook/mocks"
-  },
-  "engines": {
-    "node": "16"
   }
 }
